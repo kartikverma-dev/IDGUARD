@@ -8,3 +8,5 @@ python-dotenv
 pydantic-settings
 paddlepaddle==2.6.2
 paddleocr==2.9.1
+insightface
+onnxruntime

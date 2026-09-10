@@ -2,7 +2,13 @@ import cv2
 import numpy as np
 import time
 import logging
-from insightface.app import FaceAnalysis
+
+try:
+    from insightface.app import FaceAnalysis
+    INSIGHTFACE_AVAILABLE = True
+except ImportError:
+    FaceAnalysis = None
+    INSIGHTFACE_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -12,6 +18,10 @@ class FaceService:
         self.status = "not_implemented"
         
     def _initialize(self):
+        if not INSIGHTFACE_AVAILABLE:
+            self.status = "failed"
+            return
+
         if self.app is None:
             try:
                 # Use buffalo_sc: CPU-optimized lightweight model with MobileFaceNet ArcFace backbone
