@@ -20,6 +20,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy backend source code and models
 COPY . /app
 
-EXPOSE 8000
+EXPOSE 7860
 
-CMD exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-7860}
