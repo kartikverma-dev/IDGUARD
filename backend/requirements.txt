@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+ultralytics
+opencv-python-headless
+python-dotenv
+pydantic-settings
+paddlepaddle==2.6.2
+paddleocr==2.9.1
