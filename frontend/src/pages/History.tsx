@@ -293,7 +293,7 @@ export function History() {
                   }`}>
                     <td className="p-4">
                       <div className="font-mono text-xs font-bold text-slate-900">{v.verification_id}</div>
-                      <div className="text-[10px] text-slate-400">YOLO26n + ArcFace</div>
+                      <div className="text-[10px] text-slate-400">YOLOv8 + ArcFace</div>
                     </td>
                     <td className="p-4 text-xs font-medium text-slate-700">
                       <div className="flex items-center space-x-2">

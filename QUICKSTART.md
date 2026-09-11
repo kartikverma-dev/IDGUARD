@@ -1,4 +1,4 @@
-﻿# IDGUARD - Quickstart Guide (SIH 2026)
+# IDGUARD - Quickstart Guide (SIH 2026)
 
 Welcome to **IDGUARD** — an AI-powered Automated Identity Verification and Document Forensics system.
 
@@ -64,7 +64,7 @@ Open **`http://localhost:3000`**.
 
 ## 📁 Project Architecture & Included Model
 
-- **Model Included**: `models/best.pt` (Trained YOLOv11/YOLO26 Aadhaar document localizer, 5.35 MB)
+- **Model Included**: `models/best.pt` (Trained YOLOv11/YOLOv8 Aadhaar document localizer, 5.35 MB)
 - **Forensic Pipeline**: ELA (Error Level Analysis), 2D Fourier Spectrum (FFT), EXIF provenance audit, Passive Presentation Attack Detection (Moire, Specular Glare, Texture Sharpness).
 - **Security Check**: Aadhaar Dihedral D5 (Verhoeff) mathematical validation.
 - **Documentation**: See `IDGUARD_MASTER_DOCUMENTATION.md` for complete technical deep-dive and SIH presentation notes.

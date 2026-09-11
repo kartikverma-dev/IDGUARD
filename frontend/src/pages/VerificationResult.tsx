@@ -922,8 +922,8 @@ export function VerificationResult() {
               <PipelineRow 
                 step="01" 
                 name="Document Detection" 
-                status={data.status === 'document_detected' ? 'COMPLETED' : 'FAILED'} 
-                engine="YOLO26n"
+                status={data.status !== 'failed' ? 'COMPLETED' : 'FAILED'} 
+                engine="YOLOv8"
               />
               <PipelineRow 
                 step="02" 
@@ -1192,7 +1192,7 @@ export function VerificationResult() {
                 {/* Pipeline Verification Row - 6 Modules */}
                 <div className="p-3 bg-slate-900 text-white rounded-xl text-[10px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-center my-4 font-mono">
                   <div>
-                    <div className="text-slate-400">YOLO26n ROI</div>
+                    <div className="text-slate-400">YOLOv8 ROI</div>
                     <div className="font-bold text-emerald-400">PASSED</div>
                   </div>
                   <div>
@@ -1253,6 +1253,7 @@ function PipelineRow({ step, name, status, engine }: { step: string; name: strin
   const isCompleted = status === 'COMPLETED';
   const isPlanned = status === 'PLANNED' || status === 'NOT_IMPLEMENTED';
   const isReady = status.includes('READY');
+  const isOnline = status === 'ONLINE';
 
   return (
     <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
@@ -1264,7 +1265,7 @@ function PipelineRow({ step, name, status, engine }: { step: string; name: strin
         </div>
       </div>
       <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${
-        isCompleted ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
+        isCompleted || isOnline ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' :
         isReady ? 'bg-blue-100 text-blue-800 border border-blue-200' :
         isPlanned ? 'bg-slate-200 text-slate-600' :
         'bg-red-100 text-red-800'
