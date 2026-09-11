@@ -808,7 +808,7 @@ export function VerificationResult() {
                   </button>
                 </div>
                 <span className="text-xs font-mono text-slate-600 bg-slate-200 px-2 py-1 rounded">
-                  YOLO26n
+                  YOLOv8
                 </span>
               </div>
             </div>
