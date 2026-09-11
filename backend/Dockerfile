@@ -20,6 +20,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy backend source code and models
 COPY . /app
 
+# Create a non-root user for security
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
+
 EXPOSE 7860
 
 CMD exec uvicorn main:app --host 0.0.0.0 --port ${PORT:-7860}

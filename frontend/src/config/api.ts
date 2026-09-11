@@ -1,4 +1,4 @@
-﻿import axios from 'axios';
+import axios from 'axios';
 
 /**
  * Resolves the active backend API base URL with priority:
@@ -49,6 +49,11 @@ apiClient.interceptors.request.use((config) => {
   if (config.url && !config.url.startsWith('http://') && !config.url.startsWith('https://')) {
     config.url = getApiUrl(config.url);
   }
+  
+  // Attach API Key for backend authentication
+  const apiKey = import.meta.env.VITE_API_KEY || 'sih2026-demo-key-change-me';
+  config.headers['x-api-key'] = apiKey;
+  
   return config;
 });
 
