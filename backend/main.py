@@ -45,7 +45,7 @@ if os.path.isdir(frontend_dist):
             raise HTTPException(status_code=404, detail=f"API endpoint '/{catchall}' not found")
         
         filepath = os.path.abspath(os.path.join(frontend_dist, catchall))
-        if filepath.startswith(frontend_dist) and os.path.isfile(filepath):
+        if os.path.commonpath([frontend_dist, filepath]) == frontend_dist and os.path.isfile(filepath):
             return FileResponse(filepath)
         return FileResponse(os.path.join(frontend_dist, "index.html"))
 
