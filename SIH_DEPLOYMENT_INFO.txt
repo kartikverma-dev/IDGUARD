@@ -1,0 +1,30 @@
+==================================================
+        IDGUARD - SIH 2026 MVP DEPLOYMENT
+==================================================
+
+1. ARCHITECTURE OVERVIEW
+------------------------
+- FRONTEND: Hosted permanently on Vercel. (React + Vite + TailwindCSS)
+- BACKEND: Hosted locally on your PC. (Python + FastAPI + PyTorch + PaddleOCR)
+- TUNNEL: Cloudflare Tunnels (routes internet traffic from Vercel to your laptop)
+
+2. WHY THIS SETUP?
+------------------
+Our AI models (YOLOv8, InsightFace, PaddleOCR) are extremely powerful and require about 2GB of RAM to process Identity Cards and Faces. 
+Free cloud providers (like Render or Hugging Face) restrict memory to 512MB, which causes the AI models to crash.
+Therefore, using your laptop as the server during the hackathon demo is the most robust, fastest, and 100% free solution!
+
+3. HOW TO START THE PROJECT FOR A DEMO
+--------------------------------------
+Step 1: Open the "E:\SIH\SIH2026" folder on your computer.
+Step 2: Double-click the file named "START_IDGUARD_BACKEND.bat"
+Step 3: Two black terminal windows will open. One is your Python API, the other is Cloudflare.
+Step 4: Look closely at the Cloudflare terminal window. You will see a line that looks like this:
+        https://<some-random-words>.trycloudflare.com
+Step 5: Copy that exact URL.
+Step 6: Go to your Vercel Dashboard -> IDGUARD -> Settings -> Environment Variables.
+Step 7: Edit the value of "VITE_API_BASE_URL" and paste your new Cloudflare URL. Click Save.
+Step 8: Go to Vercel Deployments -> Click the 3 dots (...) on the top deployment -> Click Redeploy.
+Step 9: Open your live Vercel Website URL. Your MVP is now live and fully connected!
+
+** Keep the terminal windows OPEN on your laptop as long as you want the website to work! **
