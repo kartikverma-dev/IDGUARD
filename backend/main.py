@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends, Header
+from fastapi import FastAPI, HTTPException, Depends, Header, Request
 from fastapi.middleware.cors import CORSMiddleware
 from api import health, verification
 import os
@@ -7,7 +7,11 @@ from dotenv import load_dotenv
 load_dotenv()
 API_KEY = os.getenv("IDGUARD_API_KEY", "sih2026-demo-key-change-me")
 
-def verify_api_key(x_api_key: str = Header(None)):
+def verify_api_key(request: Request, x_api_key: str = Header(None)):
+    # Exempt health checks and static image assets from API key requirement
+    path = request.url.path
+    if path == "/api/health" or "/image/" in path or path.startswith("/api/demo/"):
+        return
     if x_api_key != API_KEY:
         raise HTTPException(status_code=401, detail="Unauthorized: Invalid API Key")
 
