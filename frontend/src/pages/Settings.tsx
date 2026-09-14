@@ -78,7 +78,12 @@ export function Settings() {
     setPingStatus('testing');
     const start = performance.now();
     try {
-      const resp = await axios.get(`${settings.backendUrl}/api/health`, { timeout: 5000 });
+      const apiKey = import.meta.env.VITE_API_KEY || 'sih2026-demo-key-change-me';
+      const cleanUrl = settings.backendUrl.replace(/\/+$/, '');
+      const resp = await axios.get(`${cleanUrl}/api/health`, {
+        timeout: 5000,
+        headers: { 'x-api-key': apiKey }
+      });
       const elapsed = Math.round(performance.now() - start);
       if (resp.status === 200) {
         setPingStatus('online');

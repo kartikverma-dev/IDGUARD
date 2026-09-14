@@ -8,8 +8,7 @@ import {
   FileScan,
   Scale
 } from 'lucide-react';
-import axios from 'axios';
-import { getApiUrl } from '../config/api';
+import { apiClient } from '../config/api';
 import { PipelineVisualizer } from '../components/pipeline/PipelineVisualizer';
 
 export function Pipeline() {
@@ -18,7 +17,7 @@ export function Pipeline() {
   useEffect(() => {
     const fetchHealth = async () => {
       try {
-        const resp = await axios.get(getApiUrl('/api/health'));
+        const resp = await apiClient.get('/api/health');
         setHealthData(resp.data);
       } catch (err) {
         console.error('Failed to fetch health status for pipeline:', err);

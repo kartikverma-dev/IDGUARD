@@ -8,11 +8,19 @@ load_dotenv()
 API_KEY = os.getenv("IDGUARD_API_KEY", "sih2026-demo-key-change-me")
 
 def verify_api_key(request: Request, x_api_key: str = Header(None)):
-    # Exempt health checks and static image assets from API key requirement
-    path = request.url.path
-    if path == "/api/health" or "/image/" in path or path.startswith("/api/demo/"):
+    # Exempt OPTIONS preflight requests completely
+    if request.method == "OPTIONS":
         return
-    if x_api_key != API_KEY:
+
+    # Exempt health checks and static image/demo assets
+    path = request.url.path.rstrip("/")
+    if path == "/api/health" or "/image/" in path or path.startswith("/api/demo"):
+        return
+
+    # Check header or query parameter
+    query_key = request.query_params.get("api_key")
+    provided_key = x_api_key or query_key
+    if provided_key != API_KEY:
         raise HTTPException(status_code=401, detail="Unauthorized: Invalid API Key")
 
 app = FastAPI(
